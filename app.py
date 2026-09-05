@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -5632,4 +5631,3 @@ elif page == "🔍 Comparison Between Sections":
                         "Benchmark comparison complete."
                     )
                 )
-```
