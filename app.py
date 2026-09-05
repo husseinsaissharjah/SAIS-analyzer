@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import io
 import os
 
+
 # =========================================================
 # PAGE CONFIGURATION
 # =========================================================
@@ -13,6 +14,7 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
+
 
 # =========================================================
 # SESSION STATE
@@ -35,25 +37,33 @@ TRANSLATIONS = {
         "🏠 Home": "🏠 الرئيسية",
         "📊 Overview": "📊 نظرة عامة",
         "📝 Objective Analysis": "📝 تحليل الأهداف",
-        "📈 Class Total Average Analysis": "📈 تحليل متوسط الصف",
+        "📈 Class Total Average Analysis":
+            "📈 تحليل متوسط الصف",
         "🗺️ MAP Analysis": "🗺️ تحليل MAP",
-        "🎯 Achievement & Gaps": "🎯 الإنجاز والفجوات",
-        "🔍 Comparison Between Sections": "🔍 المقارنة بين الصفوف",
+        "🎯 Achievement & Gaps":
+            "🎯 الإنجاز والفجوات",
+        "🔍 Comparison Between Sections":
+            "🔍 المقارنة بين الأقسام",
 
         # Home
-        "Assessment Analysis": "تحليل التقييم",
+        "Assessment Analysis":
+            "تحليل التقييم",
         "Student Assessment & Achievement Dashboard":
             "لوحة تقييم الطلاب والإنجاز",
         "Analyze MAP, internal assessments, grades, and student performance in seconds.":
             "حلل نتائج MAP والتقييمات الداخلية والدرجات وأداء الطلاب خلال ثوانٍ.",
-        "📌 How to use": "📌 كيفية الاستخدام",
-        "① Upload Data": "① تحميل البيانات",
+        "📌 How to use":
+            "📌 كيفية الاستخدام",
+        "① Upload Data":
+            "① تحميل البيانات",
         "Upload your Excel files with student marks.":
             "قم بتحميل ملفات Excel التي تحتوي على علامات الطلاب.",
-        "② Choose Analysis": "② اختر نوع التحليل",
+        "② Choose Analysis":
+            "② اختر نوع التحليل",
         "Pick the analysis type from the sidebar.":
             "اختر نوع التحليل من القائمة الجانبية.",
-        "③ View Insights": "③ عرض النتائج",
+        "③ View Insights":
+            "③ عرض النتائج",
         "See charts, gaps, and download reports.":
             "شاهد الرسوم البيانية والفجوات وقم بتحميل التقارير.",
         "Use the sidebar on the left to navigate to your analysis.":
@@ -71,77 +81,123 @@ TRANSLATIONS = {
         "Compare Internal Assessment results with MAP Percentile in one sheet to identify achievement gaps.":
             "قارن نتائج التقييم الداخلي مع النسبة المئوية لـ MAP في ورقة واحدة لتحديد فجوات الإنجاز.",
         "Compare Between Sections":
-            "مقارنة أداء الأقسام المختلفة من خلال تحليل الدرجات والنتائج، وتحديد نقاط القوة والفجوات، ومعرفة أي قسم يحقق أداءً أفضل في كل هدف أو معيار.",
+            "قارن أداء الأقسام المختلفة من خلال تحليل الدرجات والنتائج، وتحديد نقاط القوة والفجوات، ومعرفة أي قسم يحقق أداءً أفضل.",
         "The MAP Analysis section allows you to compare previous and current RIT scores, growth, and percentile performance.":
             "يسمح قسم تحليل MAP بمقارنة درجات RIT السابقة والحالية، والنمو، وأداء النسبة المئوية.",
 
         # General
-        "👩‍🏫 Teacher:": "👩‍🏫 المعلم:",
-        "🏫 Class:": "🏫 الصف:",
-        "📅 Date:": "📅 التاريخ:",
-        "📝 Assessment:": "📝 التقييم:",
-        "📚 Subject:": "📚 المادة:",
-        "Name:": "الاسم:",
-        "Subject:": "المادة:",
-        "Class": "الصف",
-        "Class:": "الصف:",
-        "Info": "معلومات",
-        "📋 Info": "📋 معلومات",
-        "📋 Assessment Information": "📋 معلومات التقييم",
-        "Assessment": "التقييم",
+        "👩‍🏫 Teacher:":
+            "👩‍🏫 المعلم:",
+        "🏫 Class:":
+            "🏫 الصف:",
+        "📅 Date:":
+            "📅 التاريخ:",
+        "📝 Assessment:":
+            "📝 التقييم:",
+        "📚 Subject:":
+            "📚 المادة:",
+        "Name:":
+            "الاسم:",
+        "Subject:":
+            "المادة:",
+        "Class":
+            "الصف",
+        "Class:":
+            "الصف:",
+        "Info":
+            "معلومات",
+        "📋 Info":
+            "📋 معلومات",
+        "📋 Assessment Information":
+            "📋 معلومات التقييم",
+        "Assessment":
+            "التقييم",
+        "Students":
+            "الطلاب",
 
         # Levels
-        "Absent": "غائب",
-        "Fail": "راسب",
-        "Acceptable": "مقبول",
-        "Good": "جيد",
-        "Excellent": "ممتاز",
-        "N/A": "غير متوفر",
+        "Absent":
+            "غائب",
+        "Fail":
+            "راسب",
+        "Acceptable":
+            "مقبول",
+        "Good":
+            "جيد",
+        "Excellent":
+            "ممتاز",
+        "N/A":
+            "غير متوفر",
 
         # Growth
-        "Growth": "نمو",
-        "Decay": "تراجع",
-        "Same": "ثابت",
+        "Growth":
+            "نمو",
+        "Decay":
+            "تراجع",
+        "Same":
+            "ثابت",
 
         # Support
-        "Intervention": "تدخل",
-        "Monitor": "مراقبة",
-        "On Track": "على المسار",
-        "Enrichment": "إثراء",
-        "Support Level": "مستوى الدعم",
+        "Intervention":
+            "تدخل",
+        "Monitor":
+            "مراقبة",
+        "On Track":
+            "على المسار",
+        "Enrichment":
+            "إثراء",
+        "Support Level":
+            "مستوى الدعم",
 
         # Bands
-        "Below 60% (Weak)": "أقل من 60% (ضعيف)",
-        "60-75% (Acceptable)": "60-75% (مقبول)",
-        "76-85% (Good)": "76-85% (جيد)",
-        "86-100% (Excellent)": "86-100% (ممتاز)",
-        "Below Acceptable": "أقل من المقبول",
+        "Below 60% (Weak)":
+            "أقل من 60% (ضعيف)",
+        "60-75% (Acceptable)":
+            "60-75% (مقبول)",
+        "76-85% (Good)":
+            "76-85% (جيد)",
+        "86-100% (Excellent)":
+            "86-100% (ممتاز)",
+        "Below Acceptable":
+            "أقل من المقبول",
 
         # Worksheet
-        "Select Worksheet": "اختر ورقة العمل",
+        "Select Worksheet":
+            "اختر ورقة العمل",
+        "Select MAP Worksheet":
+            "اختر ورقة MAP",
 
         # Objective Analysis
-        "Objective Analysis": "تحليل الأهداف",
+        "Objective Analysis":
+            "تحليل الأهداف",
         "Analyze a single assessment based on learning objectives and student marks.":
             "حلل تقييماً واحداً بناءً على أهداف التعلم وعلامات الطلاب.",
-        "Auto Total Max Mark": "إجمالي الدرجة القصوى تلقائياً",
-        "Objectives": "الأهداف",
-        "Preview": "معاينة",
-        "Analyze Assessment": "تحليل التقييم",
+        "Auto Total Max Mark":
+            "إجمالي الدرجة القصوى تلقائياً",
+        "Objectives":
+            "الأهداف",
+        "Preview":
+            "معاينة",
+        "Analyze Assessment":
+            "تحليل التقييم",
         "Step 1: Upload Student Marks Excel":
             "الخطوة 1: تحميل ملف Excel لعلامات الطلاب",
         "Step 2: Analysis Report":
             "الخطوة 2: تقرير التحليل",
         "📊 Comparison Table (Percentage Based)":
             "📊 جدول المقارنة (حسب النسبة المئوية)",
-        "📢 Summary": "📢 الملخص",
-        "Bar Chart": "الرسم البياني الشريطي",
-        "Pie Chart": "الرسم البياني الدائري",
+        "📢 Summary":
+            "📢 الملخص",
+        "Bar Chart":
+            "الرسم البياني الشريطي",
+        "Pie Chart":
+            "الرسم البياني الدائري",
         "📈 Average Score Trend (%)":
             "📈 اتجاه متوسط الدرجات (%)",
         "📈 Student Growth (Difference)":
             "📈 نمو الطالب (الفرق)",
-        "👥 Support Groups": "👥 مجموعات الدعم",
+        "👥 Support Groups":
+            "👥 مجموعات الدعم",
         "🎯 Student Support Levels":
             "🎯 مستويات دعم الطلاب",
         "📊 Student Achievement":
@@ -150,7 +206,8 @@ TRANSLATIONS = {
             "📊 توزيع المستويات",
 
         # Upload
-        "Upload Excel": "تحميل Excel",
+        "Upload Excel":
+            "تحميل Excel",
         "📥 Download Excel Template":
             "📥 تحميل قالب Excel",
         "📊 Download Excel":
@@ -159,7 +216,8 @@ TRANSLATIONS = {
             "📊 تحميل Excel المقارنة",
 
         # MAP
-        "🗺️ MAP Analysis": "🗺️ تحليل MAP",
+        "🗺️ MAP Analysis":
+            "🗺️ تحليل MAP",
         "📄 Upload MAP Data Excel":
             "📄 تحميل ملف Excel لبيانات MAP",
         "📥 Download MAP Excel Template":
@@ -186,8 +244,6 @@ TRANSLATIONS = {
             "📋 تحليل MAP للطلاب",
         "📥 Download MAP Analysis":
             "📥 تحميل تحليل MAP",
-        "Growth Distribution":
-            "توزيع النمو",
         "🎯 Student Percentile":
             "🎯 النسبة المئوية للطلاب",
         "What is a RIT Score?":
@@ -200,18 +256,22 @@ TRANSLATIONS = {
             "🎯 الإنجاز والفجوات (التقييم الداخلي مقابل MAP)",
         "📄 Upload Single Sheet":
             "📄 تحميل ورقة واحدة",
-        "Status": "الحالة",
-        "Count": "العدد",
-        "Students": "الطلاب",
+        "Status":
+            "الحالة",
+        "Count":
+            "العدد",
         "📈 Student Gap (Difference)":
             "📈 فجوة الطالب (الفرق)",
 
-        # Reports / Comparison
-        "Select Service": "اختر الخدمة",
-        "Compare between sections": "مقارنة بين الأقسام",
+        # Comparison
+        "Select Service":
+            "اختر الخدمة",
+        "Compare between sections":
+            "مقارنة بين الأقسام",
         "🔍 Compare Between Sections":
             "🔍 مقارنة بين الأقسام",
-        "Comparison Type": "نوع المقارنة",
+        "Comparison Type":
+            "نوع المقارنة",
         "By Assessment Objectives":
             "حسب أهداف التقييم",
         "By Assessment Total Mark":
@@ -220,33 +280,42 @@ TRANSLATIONS = {
             "حسب تقييم المعيار الخارجي",
         "📚 By Assessment Objectives":
             "📚 حسب أهداف التقييم",
-        "Number of classes": "عدد الفصول",
-        "📄 Class": "📄 الصف",
-        "file": "ملف",
+        "Number of classes":
+            "عدد الأقسام",
+        "📄 Class":
+            "📄 الصف",
+        "file":
+            "ملف",
         "📊 Band Distribution per Class":
             "📊 توزيع الفئات لكل صف",
-        "Band": "الفئة",
+        "Band":
+            "الفئة",
         "✅ Comparison complete.":
             "✅ اكتملت المقارنة.",
-        "📊 By Assessment Total Mark":
-            "📊 حسب الدرجة الإجمالية للتقييم",
-        "🏢 By External Benchmark Assessment":
-            "🏢 حسب تقييم المعيار الخارجي",
 
-        # Objective comparison
-        "Objective Comparison": "مقارنة الأهداف",
+        # Objective Comparison
+        "Objective Comparison":
+            "مقارنة الأهداف",
         "Better Class by Objective":
             "الصف الأفضل حسب الهدف",
-        "Objective": "الهدف",
-        "Description": "الوصف",
-        "Better Class": "الصف الأفضل",
-        "Difference": "الفرق",
-        "Tie": "تعادل",
-        "Class Average": "متوسط الصف",
+        "Objective":
+            "الهدف",
+        "Description":
+            "الوصف",
+        "Better Class":
+            "الصف الأفضل",
+        "Difference":
+            "الفرق",
+        "Tie":
+            "تعادل",
+        "Class Average":
+            "متوسط الصف",
         "Objective Performance by Class":
             "أداء الأهداف حسب الصف",
 
-        # Total mark comparison
+        # Total Mark
+        "📊 By Assessment Total Mark":
+            "📊 حسب الدرجة الإجمالية للتقييم",
         "Better Class by Total Mark":
             "الصف الأفضل حسب الدرجة الإجمالية",
         "Class Average %":
@@ -258,43 +327,41 @@ TRANSLATIONS = {
         "Difference between highest and lowest class average":
             "الفرق بين أعلى وأدنى متوسط صف",
 
-        # External Benchmark
-        "External Benchmark Assessment":
-            "تقييم المعيار الخارجي",
-        "📄 Download External Benchmark Excel Template":
-            "📄 تحميل قالب Excel للمعيار الخارجي",
-        "📄 Upload External Benchmark Excel":
-            "📄 تحميل ملف Excel للمعيار الخارجي",
-        "Select Book / Worksheet":
-            "اختر الكتاب / ورقة العمل",
-        "External Benchmark Data Preview":
-            "معاينة بيانات المعيار الخارجي",
-        "External Benchmark Summary":
-            "ملخص المعيار الخارجي",
-        "Average Score %":
-            "متوسط النتيجة %",
-        "Median Score %":
-            "الوسيط %",
-        "Highest Score %":
-            "أعلى نتيجة %",
-        "Lowest Score %":
-            "أدنى نتيجة %",
-        "Better Class by External Benchmark":
-            "الصف الأفضل حسب المعيار الخارجي",
-        "External Benchmark Performance by Class":
-            "أداء المعيار الخارجي حسب الصف",
-        "Benchmark Band":
-            "فئة المعيار",
-        "Benchmark comparison complete.":
-            "✅ اكتملت مقارنة المعيار.",
-        "Benchmark file invalid":
-            "❌ ملف المعيار الخارجي غير صالح.",
-        "Score":
-            "النتيجة",
-        "Max Score":
-            "الدرجة القصوى",
-        "Book":
-            "الكتاب",
+        # External Benchmark / MAP Comparison
+        "🏢 By External Benchmark Assessment":
+            "🏢 حسب تقييم المعيار الخارجي",
+        "📥 Download External Benchmark Excel Template":
+            "📥 تحميل قالب Excel للمعيار الخارجي",
+        "📄 Upload External Benchmark MAP Excel":
+            "📄 تحميل ملف MAP للمعيار الخارجي",
+        "Select MAP Book / Worksheet":
+            "اختر كتاب / ورقة MAP",
+        "External Benchmark MAP Data Preview":
+            "معاينة بيانات MAP للمعيار الخارجي",
+        "MAP Comparison Summary":
+            "ملخص مقارنة MAP",
+        "Average RIT Growth":
+            "متوسط نمو RIT",
+        "Average Percentile":
+            "متوسط النسبة المئوية",
+        "Previous Average RIT":
+            "متوسط RIT السابق",
+        "Current Average RIT":
+            "متوسط RIT الحالي",
+        "RIT Growth Rank":
+            "ترتيب نمو RIT",
+        "Percentile Rank":
+            "ترتيب النسبة المئوية",
+        "Best Class by RIT Growth":
+            "أفضل صف حسب نمو RIT",
+        "Best Class by Percentile":
+            "أفضل صف حسب النسبة المئوية",
+        "RIT Growth Comparison by Class":
+            "مقارنة نمو RIT حسب الصف",
+        "Percentile Comparison by Class":
+            "مقارنة النسبة المئوية حسب الصف",
+        "MAP comparison complete.":
+            "✅ اكتملت مقارنة MAP.",
 
         # Errors
         "❌ Need 'Points for Objectives' row.":
@@ -311,35 +378,12 @@ TRANSLATIONS = {
             "❌ خطأ في قراءة ملف MAP: ",
         "❌ Class file invalid":
             "❌ ملف الصف غير صالح.",
-
-        # Instructions
-        (
-            "Row 1: Assessment Information\n"
-            "Row 2: Headers (Objective names)\n"
-            "Row 3: Objective Descriptions\n"
-            "Row 4: 'Points for Objectives' + Maximum Marks\n"
-            "Row 5+: Student Marks\n"
-            "Leave empty or enter 'A' for absent students."
-        ):
-            (
-                "الصف 1: معلومات التقييم\n"
-                "الصف 2: العناوين (أسماء الأهداف)\n"
-                "الصف 3: وصف الأهداف\n"
-                "الصف 4: 'Points for Objectives' + الدرجات القصوى\n"
-                "الصف 5 وما بعده: علامات الطلاب\n"
-                "اترك الخانة فارغة أو أدخل 'A' للطالب الغائب."
-            ),
-
-        "Choose the number of assessments. Upload files using the same Excel format as Objective Analysis.":
-            "اختر عدد التقييمات. قم بتحميل الملفات باستخدام نفس تنسيق Excel المستخدم في تحليل الأهداف.",
-        "🔢 Number of assessments":
-            "🔢 عدد التقييمات",
     }
 }
 
 
 # =========================================================
-# TRANSLATION FUNCTION
+# TRANSLATION
 # =========================================================
 def t(text):
 
@@ -541,14 +585,6 @@ COLORS = {
     "Excellent": "#9467bd"
 }
 
-ORDER = [
-    "Absent",
-    "Fail",
-    "Acceptable",
-    "Good",
-    "Excellent"
-]
-
 
 # =========================================================
 # HELPER FUNCTIONS
@@ -603,14 +639,52 @@ def support_level(pct):
     return t("Enrichment")
 
 
+def assessment_band(pct):
+
+    if pct is None or pd.isna(pct):
+
+        return t("N/A")
+
+    if pct < 60:
+
+        return t("Fail")
+
+    if pct <= 75:
+
+        return t("Acceptable")
+
+    if pct <= 85:
+
+        return t("Good")
+
+    return t("Excellent")
+
+
+def comparison_band(pct):
+
+    if pct is None or pd.isna(pct):
+
+        return t("Below 60% (Weak)")
+
+    if pct < 60:
+
+        return t("Below 60% (Weak)")
+
+    if pct <= 75:
+
+        return t("60-75% (Acceptable)")
+
+    if pct <= 85:
+
+        return t("76-85% (Good)")
+
+    return t("86-100% (Excellent)")
+
+
 # =========================================================
 # EXCEL WORKSHEET SELECTION
 # =========================================================
-def get_excel_sheet(
-    file,
-    key,
-    label=None
-):
+def get_excel_sheet(file, key, label=None):
 
     try:
 
@@ -637,13 +711,11 @@ def get_excel_sheet(
             f"Please select the worksheet containing the data."
         )
 
-        selected_sheet = st.selectbox(
+        return st.selectbox(
             label or t("Select Worksheet"),
             sheet_names,
             key=key
         )
-
-        return selected_sheet
 
     except Exception as error:
 
@@ -655,7 +727,7 @@ def get_excel_sheet(
 
 
 # =========================================================
-# EXCEL TEMPLATE HELPERS
+# WORKBOOK HELPER
 # =========================================================
 def save_workbook_to_bytes(
     data,
@@ -683,6 +755,9 @@ def save_workbook_to_bytes(
     return buffer.getvalue()
 
 
+# =========================================================
+# OBJECTIVES TEMPLATE
+# =========================================================
 def objectives_template():
 
     data = [
@@ -737,11 +812,12 @@ def objectives_template():
         ]
     ]
 
-    return save_workbook_to_bytes(
-        data
-    )
+    return save_workbook_to_bytes(data)
 
 
+# =========================================================
+# TOTAL TEMPLATE
+# =========================================================
 def total_template():
 
     data = [
@@ -774,11 +850,12 @@ def total_template():
         ]
     ]
 
-    return save_workbook_to_bytes(
-        data
-    )
+    return save_workbook_to_bytes(data)
 
 
+# =========================================================
+# GAPS TEMPLATE
+# =========================================================
 def gaps_template():
 
     data = [
@@ -816,11 +893,12 @@ def gaps_template():
         ]
     ]
 
-    return save_workbook_to_bytes(
-        data
-    )
+    return save_workbook_to_bytes(data)
 
 
+# =========================================================
+# MAP TEMPLATE
+# =========================================================
 def map_template():
 
     data = {
@@ -882,59 +960,6 @@ def map_template():
     return buffer.getvalue()
 
 
-def external_benchmark_template():
-
-    data = [
-        [
-            "Teacher Name: Example Teacher",
-            "Class: Grade 7A",
-            "Date: 27/08/2026",
-            "Assessment name: External Benchmark 1",
-            "Subject: Mathematics"
-        ],
-        [
-            "Student Name",
-            "Grade",
-            "Subject",
-            "Score",
-            "Max Score"
-        ],
-        [
-            "Student 1",
-            7,
-            "Mathematics",
-            42,
-            50
-        ],
-        [
-            "Student 2",
-            7,
-            "Mathematics",
-            38,
-            50
-        ],
-        [
-            "Student 3",
-            7,
-            "Mathematics",
-            45,
-            50
-        ],
-        [
-            "Student 4",
-            7,
-            "Mathematics",
-            "A",
-            50
-        ]
-    ]
-
-    return save_workbook_to_bytes(
-        data,
-        sheet_name="Benchmark 1"
-    )
-
-
 # =========================================================
 # READ OBJECTIVES FILE
 # =========================================================
@@ -967,9 +992,7 @@ def read_objectives_file(
                     1
                 )
 
-                meta[key.strip()] = (
-                    value_part.strip()
-                )
+                meta[key.strip()] = value_part.strip()
 
         file.seek(0)
 
@@ -1010,9 +1033,7 @@ def read_objectives_file(
 
                 continue
 
-            header = str(
-                column
-            ).strip()
+            header = str(column).strip()
 
             if (
                 header == ""
@@ -1037,9 +1058,7 @@ def read_objectives_file(
 
             if max_value > 0:
 
-                valid_cols.append(
-                    column
-                )
+                valid_cols.append(column)
 
                 total_max += max_value
 
@@ -1062,9 +1081,11 @@ def read_objectives_file(
             }
         )
 
-        keep_columns = [
-            "Student Name"
-        ] + valid_cols
+        keep_columns = (
+            ["Student Name"]
+            +
+            valid_cols
+        )
 
         df = df[
             keep_columns
@@ -1125,9 +1146,7 @@ def read_total_file(
 
         for value in raw.iloc[0].tolist():
 
-            text = str(
-                value
-            ).strip()
+            text = str(value).strip()
 
             if ":" in text:
 
@@ -1136,9 +1155,7 @@ def read_total_file(
                     1
                 )
 
-                meta[key.strip()] = (
-                    value_part.strip()
-                )
+                meta[key.strip()] = value_part.strip()
 
         headers = [
             str(value).strip()
@@ -1255,9 +1272,7 @@ def read_gaps_file(
 
         for value in raw.iloc[0].tolist():
 
-            text = str(
-                value
-            ).strip()
+            text = str(value).strip()
 
             if ":" in text:
 
@@ -1266,9 +1281,7 @@ def read_gaps_file(
                     1
                 )
 
-                meta[key.strip()] = (
-                    value_part.strip()
-                )
+                meta[key.strip()] = value_part.strip()
 
         headers = [
             str(value).strip()
@@ -1505,8 +1518,7 @@ def read_section_file(
 
                 if (
                     description == ""
-                    or description.lower()
-                    == "nan"
+                    or description.lower() == "nan"
                 ):
 
                     description = str(
@@ -1515,13 +1527,9 @@ def read_section_file(
 
             else:
 
-                description = str(
-                    column
-                )
+                description = str(column)
 
-            obj_desc[column] = (
-                description
-            )
+            obj_desc[column] = description
 
         return (
             meta,
@@ -1543,9 +1551,9 @@ def read_section_file(
 
 
 # =========================================================
-# READ EXTERNAL BENCHMARK FILE
+# READ MAP FILE
 # =========================================================
-def read_external_benchmark_file(
+def read_map_file(
     file,
     sheet_name=0
 ):
@@ -1554,375 +1562,81 @@ def read_external_benchmark_file(
 
         file.seek(0)
 
-        raw = pd.read_excel(
+        map_df = pd.read_excel(
             file,
-            sheet_name=sheet_name,
-            header=None
+            sheet_name=sheet_name
         )
 
-        if raw.empty:
+        if map_df.empty:
 
-            return None, None
+            return None, [
+                "The worksheet is empty."
+            ]
 
-        # -------------------------------------------------
-        # READ METADATA
-        # -------------------------------------------------
-        meta = {}
-
-        for value in raw.iloc[0].tolist():
-
-            text = str(value).strip()
-
-            if ":" in text:
-
-                key, value_part = text.split(
-                    ":",
-                    1
-                )
-
-                meta[key.strip()] = (
-                    value_part.strip()
-                )
-
-        # -------------------------------------------------
-        # READ HEADERS
-        # -------------------------------------------------
-        headers = [
-            str(value).strip()
-            for value in raw.iloc[1].tolist()
+        required_columns = [
+            "Student Name",
+            "Grade",
+            "Subject",
+            "Previous RIT",
+            "Current RIT",
+            "Percentile"
         ]
 
-        data = raw.iloc[2:].copy()
-
-        data.columns = headers
-
-        data = data.dropna(
-            axis=1,
-            how="all"
-        )
-
-        if data.empty:
-
-            return None, None
-
-        # -------------------------------------------------
-        # FIND STUDENT COLUMN
-        # -------------------------------------------------
-        student_column = None
-
-        for column in data.columns:
-
-            column_text = str(
-                column
-            ).strip().lower()
-
-            if (
-                "student" in column_text
-                and "name" in column_text
-            ):
-
-                student_column = column
-
-                break
-
-        if student_column is None:
-
-            for column in data.columns:
-
-                column_text = str(
-                    column
-                ).strip().lower()
-
-                if "student" in column_text:
-
-                    student_column = column
-
-                    break
-
-        if student_column is None:
-
-            student_column = data.columns[0]
-
-        # -------------------------------------------------
-        # FIND SCORE COLUMN
-        # -------------------------------------------------
-        score_column = None
-
-        score_keywords = [
-            "score",
-            "mark",
-            "result",
-            "obtained",
-            "total"
+        missing_columns = [
+            c
+            for c in required_columns
+            if c not in map_df.columns
         ]
 
-        for column in data.columns:
+        if missing_columns:
 
-            if column == student_column:
+            return None, missing_columns
 
-                continue
+        for column in [
+            "Previous RIT",
+            "Current RIT",
+            "Percentile"
+        ]:
 
-            column_text = str(
-                column
-            ).strip().lower()
-
-            for keyword in score_keywords:
-
-                if keyword in column_text:
-
-                    if "max" not in column_text:
-
-                        if "maximum" not in column_text:
-
-                            score_column = column
-
-                            break
-
-            if score_column is not None:
-
-                break
-
-        # -------------------------------------------------
-        # FIND MAX SCORE COLUMN
-        # -------------------------------------------------
-        max_score_column = None
-
-        max_keywords = [
-            "max score",
-            "maximum score",
-            "max mark",
-            "maximum mark",
-            "out of",
-            "total max"
-        ]
-
-        for column in data.columns:
-
-            column_text = str(
-                column
-            ).strip().lower()
-
-            for keyword in max_keywords:
-
-                if keyword in column_text:
-
-                    max_score_column = column
-
-                    break
-
-            if max_score_column is not None:
-
-                break
-
-        # -------------------------------------------------
-        # FIND PERCENTAGE COLUMN
-        # -------------------------------------------------
-        percentage_column = None
-
-        for column in data.columns:
-
-            column_text = str(
-                column
-            ).strip().lower()
-
-            if (
-                "%"
-                in column_text
-                or "percentage"
-                in column_text
-                or "percent"
-                in column_text
-            ):
-
-                percentage_column = column
-
-                break
-
-        # -------------------------------------------------
-        # VALIDATE
-        # -------------------------------------------------
-        if (
-            score_column is None
-            and percentage_column is None
-        ):
-
-            return None, None
-
-        # -------------------------------------------------
-        # RENAME STUDENT COLUMN
-        # -------------------------------------------------
-        data = data.rename(
-            columns={
-                student_column:
-                    "Student Name"
-            }
-        )
-
-        data = data[
-            data["Student Name"]
-            .notna()
-        ].copy()
-
-        data["Student Name"] = (
-            data["Student Name"]
-            .astype(str)
-            .str.strip()
-        )
-
-        data = data[
-            data["Student Name"]
-            != ""
-        ].copy()
-
-        data = data[
-            data["Student Name"]
-            .str.lower()
-            != "nan"
-        ].copy()
-
-        # -------------------------------------------------
-        # ABSENT DETECTION
-        # -------------------------------------------------
-        def check_absent(row):
-
-            if score_column is not None:
-
-                value = row[
-                    score_column
-                ]
-
-                if isinstance(
-                    value,
-                    str
-                ):
-
-                    text = (
-                        value
-                        .strip()
-                        .lower()
-                    )
-
-                    if text in [
-                        "a",
-                        "absent"
-                    ]:
-
-                        return True
-
-            return False
-
-        data["Absent"] = (
-            data.apply(
-                check_absent,
-                axis=1
-            )
-        )
-
-        # -------------------------------------------------
-        # CALCULATE SCORE %
-        # -------------------------------------------------
-        if percentage_column is not None:
-
-            data["Score %"] = (
-                pd.to_numeric(
-                    data[
-                        percentage_column
-                    ],
-                    errors="coerce"
-                )
-            )
-
-        else:
-
-            data["Score"] = pd.to_numeric(
-                data[
-                    score_column
-                ],
+            map_df[column] = pd.to_numeric(
+                map_df[column],
                 errors="coerce"
             )
 
-            if max_score_column is not None:
-
-                data["Max Score"] = (
-                    pd.to_numeric(
-                        data[
-                            max_score_column
-                        ],
-                        errors="coerce"
-                    )
-                )
-
-            else:
-
-                data["Max Score"] = 100
-
-            data["Score %"] = (
-                data["Score"]
-                /
-                data["Max Score"]
-                * 100
-            )
-
-        data.loc[
-            data["Absent"],
-            "Score %"
-        ] = None
-
-        data["Score %"] = (
-            pd.to_numeric(
-                data["Score %"],
-                errors="coerce"
-            )
-            .clip(
-                lower=0,
-                upper=100
-            )
-            .round(1)
+        map_df["RIT Growth"] = (
+            map_df["Current RIT"]
+            -
+            map_df["Previous RIT"]
         )
 
-        # -------------------------------------------------
-        # PERFORMANCE BANDS
-        # -------------------------------------------------
-        def benchmark_band(p):
-
-            if pd.isna(p):
-
-                return t("Absent")
-
-            if p < 60:
-
-                return t(
-                    "Below 60% (Weak)"
-                )
-
-            if p <= 75:
-
-                return t(
-                    "60-75% (Acceptable)"
-                )
-
-            if p <= 85:
-
-                return t(
-                    "76-85% (Good)"
-                )
-
-            return t(
-                "86-100% (Excellent)"
-            )
-
-        data["Band"] = (
-            data["Score %"]
+        map_df["Growth Status"] = (
+            map_df["RIT Growth"]
             .apply(
-                benchmark_band
+                lambda value:
+                    t("Growth")
+                    if value > 0
+                    else
+                    t("Decay")
+                    if value < 0
+                    else
+                    t("Same")
             )
         )
 
-        return meta, data
+        map_df["Support Level"] = (
+            map_df["Percentile"]
+            .apply(
+                support_level
+            )
+        )
 
-    except Exception:
+        return map_df, None
 
-        return None, None
+    except Exception as error:
+
+        return None, [
+            str(error)
+        ]
 
 
 # =========================================================
@@ -2113,17 +1827,6 @@ elif page == "📝 Objective Analysis":
         t("Step 1: Upload Student Marks Excel")
     )
 
-    st.info(
-        t(
-            "Row 1: Assessment Information\n"
-            "Row 2: Headers (Objective names)\n"
-            "Row 3: Objective Descriptions\n"
-            "Row 4: 'Points for Objectives' + Maximum Marks\n"
-            "Row 5+: Student Marks\n"
-            "Leave empty or enter 'A' for absent students."
-        )
-    )
-
     up_file = st.file_uploader(
         t("Upload Excel"),
         type=["xlsx", "xls"],
@@ -2183,13 +1886,6 @@ elif page == "📝 Objective Analysis":
             f"{meta.get('Assessment name', 'N/A')}"
         )
 
-        st.markdown(
-            f"### 📝 {t('Name:')} "
-            f"**{meta.get('Assessment name', 'N/A')}** "
-            f"| 📚 {t('Subject:')} "
-            f"**{meta.get('Subject', 'N/A')}**"
-        )
-
         up_file.seek(0)
 
         raw = pd.read_excel(
@@ -2219,9 +1915,7 @@ elif page == "📝 Objective Analysis":
 
             raw_students = raw.copy()
 
-        first_column = (
-            raw_students.columns[0]
-        )
+        first_column = raw_students.columns[0]
 
         obj_desc = {}
 
@@ -2239,8 +1933,7 @@ elif page == "📝 Objective Analysis":
 
                 if (
                     description == ""
-                    or description.lower()
-                    == "nan"
+                    or description.lower() == "nan"
                 ):
 
                     description = str(
@@ -2249,9 +1942,7 @@ elif page == "📝 Objective Analysis":
 
             else:
 
-                description = str(
-                    column
-                )
+                description = str(column)
 
             obj_desc[column] = description
 
@@ -2286,9 +1977,7 @@ elif page == "📝 Objective Analysis":
 
                 continue
 
-            header = str(
-                column
-            ).strip()
+            header = str(column).strip()
 
             if (
                 header == ""
@@ -2313,13 +2002,9 @@ elif page == "📝 Objective Analysis":
 
             if maximum > 0:
 
-                obj_names.append(
-                    column
-                )
+                obj_names.append(column)
 
-                obj_max.append(
-                    maximum
-                )
+                obj_max.append(maximum)
 
         student_df = (
             raw_students[~mask]
@@ -2340,9 +2025,6 @@ elif page == "📝 Objective Analysis":
             ["Student Name"] + obj_names
         ].copy()
 
-        # =====================================================
-        # ABSENT STUDENT DETECTION
-        # =====================================================
         def is_absent(row):
 
             has_a = False
@@ -2353,10 +2035,7 @@ elif page == "📝 Objective Analysis":
 
                 value = row[column]
 
-                if isinstance(
-                    value,
-                    str
-                ):
+                if isinstance(value, str):
 
                     text = (
                         value
@@ -2364,10 +2043,10 @@ elif page == "📝 Objective Analysis":
                         .lower()
                     )
 
-                    if (
-                        text == "a"
-                        or text == "absent"
-                    ):
+                    if text in [
+                        "a",
+                        "absent"
+                    ]:
 
                         has_a = True
 
@@ -2379,10 +2058,7 @@ elif page == "📝 Objective Analysis":
 
                     all_empty = False
 
-            return (
-                has_a
-                or all_empty
-            )
+            return has_a or all_empty
 
         student_df["Absent"] = (
             student_df.apply(
@@ -2398,9 +2074,7 @@ elif page == "📝 Objective Analysis":
                 errors="coerce"
             )
 
-        total_max = sum(
-            obj_max
-        )
+        total_max = sum(obj_max)
 
         st.info(
             f"📋 {t('Auto Total Max Mark')} = "
@@ -2421,9 +2095,6 @@ elif page == "📝 Objective Analysis":
                 f"{obj_desc.get(obj, obj)}"
             )
 
-        # =====================================================
-        # DATA VALIDATION
-        # =====================================================
         errors = []
 
         for _, row in student_df.iterrows():
@@ -2442,9 +2113,7 @@ elif page == "📝 Objective Analysis":
 
                     continue
 
-                value = float(
-                    value
-                )
+                value = float(value)
 
                 if value > obj_max[index]:
 
@@ -2475,9 +2144,7 @@ elif page == "📝 Objective Analysis":
             st.error(
                 t("🚫 Fix data entry:")
                 + "\n"
-                + "\n".join(
-                    errors
-                )
+                + "\n".join(errors)
             )
 
         else:
@@ -2489,9 +2156,6 @@ elif page == "📝 Objective Analysis":
 
                 results = []
 
-                # =================================================
-                # STUDENT ANALYSIS
-                # =================================================
                 for _, row in student_df.iterrows():
 
                     if row["Absent"]:
@@ -2513,7 +2177,7 @@ elif page == "📝 Objective Analysis":
 
                     total_obtained = 0.0
 
-                    total_possible_for_student = 0.0
+                    total_possible = 0.0
 
                     for index, column in enumerate(
                         obj_names
@@ -2525,22 +2189,20 @@ elif page == "📝 Objective Analysis":
 
                             continue
 
-                        mark = float(
-                            mark
-                        )
+                        mark = float(mark)
 
                         total_obtained += mark
 
-                        total_possible_for_student += (
+                        total_possible += (
                             obj_max[index]
                         )
 
-                    if total_possible_for_student > 0:
+                    if total_possible > 0:
 
                         total_percentage = (
                             total_obtained
                             /
-                            total_possible_for_student
+                            total_possible
                             * 100
                         )
 
@@ -2548,32 +2210,13 @@ elif page == "📝 Objective Analysis":
 
                         total_percentage = None
 
-                    # =================================================
-                    # UPDATED BANDS
-                    # 0-59   = Fail
-                    # 60-75  = Acceptable
-                    # 76-85  = Good
-                    # 86-100 = Excellent
-                    # =================================================
-                    if total_percentage is None:
-
-                        level = t("N/A")
-
-                    elif total_percentage < 60:
-
-                        level = t("Fail")
-
-                    elif total_percentage <= 75:
-
-                        level = t("Acceptable")
-
-                    elif total_percentage <= 85:
-
-                        level = t("Good")
-
-                    else:
-
-                        level = t("Excellent")
+                    level = (
+                        t("N/A")
+                        if total_percentage is None
+                        else assessment_band(
+                            total_percentage
+                        )
+                    )
 
                     results.append(
                         {
@@ -2589,23 +2232,18 @@ elif page == "📝 Objective Analysis":
                                     total_percentage,
                                     1
                                 )
-                                if total_percentage
-                                is not None
+                                if total_percentage is not None
                                 else None,
                             "Level":
                                 level
                         }
                     )
 
-                rdf = pd.DataFrame(
-                    results
-                )
+                rdf = pd.DataFrame(results)
 
                 rdf["Support Level"] = (
                     rdf["Total %"]
-                    .apply(
-                        support_level
-                    )
+                    .apply(support_level)
                 )
 
                 st.header(
@@ -2695,7 +2333,6 @@ elif page == "📝 Objective Analysis":
                         * 100
                     )
 
-                    # UPDATED
                     good_percentage = (
                         (
                             (
@@ -2711,7 +2348,6 @@ elif page == "📝 Objective Analysis":
                         * 100
                     )
 
-                    # UPDATED
                     excellent_percentage = (
                         (
                             valid_percentages >= 86
@@ -2724,11 +2360,8 @@ elif page == "📝 Objective Analysis":
                 else:
 
                     fail_percentage = 0
-
                     acceptable_percentage = 0
-
                     good_percentage = 0
-
                     excellent_percentage = 0
 
                 if total_students == 0:
@@ -2756,9 +2389,7 @@ elif page == "📝 Objective Analysis":
 
                 else:
 
-                    overall = t(
-                        "Below Acceptable"
-                    )
+                    overall = t("Below Acceptable")
 
                 st.subheader(
                     t("📢 Summary")
@@ -2792,8 +2423,7 @@ elif page == "📝 Objective Analysis":
 
                 level_df = (
                     rdf[
-                        rdf["Level"]
-                        != t("Absent")
+                        rdf["Level"] != t("Absent")
                     ]["Level"]
                     .value_counts()
                     .reset_index()
@@ -3039,9 +2669,7 @@ elif page == "📈 Class Total Average Analysis":
 
                 st.stop()
 
-            metadata_list.append(
-                meta
-            )
+            metadata_list.append(meta)
 
             percentage_column = (
                 f"Pct{index + 1}"
@@ -3130,9 +2758,7 @@ elif page == "📈 Class Total Average Analysis":
             merged[
                 percentage_columns[-1]
             ]
-            .apply(
-                support_level
-            )
+            .apply(support_level)
         )
 
         st.subheader(
@@ -3211,10 +2837,6 @@ elif page == "📈 Class Total Average Analysis":
 
         with v1:
 
-            st.markdown(
-                f"**{t('Bar Chart')}**"
-            )
-
             bar_fig = px.bar(
                 status_df,
                 x="Status",
@@ -3236,10 +2858,6 @@ elif page == "📈 Class Total Average Analysis":
             )
 
         with v2:
-
-            st.markdown(
-                f"**{t('Pie Chart')}**"
-            )
 
             pie_fig = px.pie(
                 status_df,
@@ -3404,286 +3022,221 @@ elif page == "🗺️ MAP Analysis":
 
             st.stop()
 
-        try:
+        map_df, map_error = read_map_file(
+            map_file,
+            sheet_name=selected_sheet
+        )
 
-            map_file.seek(0)
-
-            map_df = pd.read_excel(
-                map_file,
-                sheet_name=selected_sheet
-            )
-
-            required_columns = [
-                "Student Name",
-                "Grade",
-                "Subject",
-                "Previous RIT",
-                "Current RIT",
-                "Percentile"
-            ]
-
-            missing_columns = [
-                c
-                for c in required_columns
-                if c not in map_df.columns
-            ]
-
-            if missing_columns:
-
-                st.error(
-                    t("❌ Missing columns: ")
-                    +
-                    ", ".join(
-                        missing_columns
-                    )
-                )
-
-                st.stop()
-
-            for column in [
-                "Previous RIT",
-                "Current RIT",
-                "Percentile"
-            ]:
-
-                map_df[column] = pd.to_numeric(
-                    map_df[column],
-                    errors="coerce"
-                )
-
-            map_df["RIT Growth"] = (
-                map_df["Current RIT"]
-                -
-                map_df["Previous RIT"]
-            )
-
-            map_df["Growth Status"] = (
-                map_df["RIT Growth"]
-                .apply(
-                    lambda value:
-                        t("Growth")
-                        if value > 0
-                        else
-                        t("Decay")
-                        if value < 0
-                        else
-                        t("Same")
-                )
-            )
-
-            map_df["Support Level"] = (
-                map_df["Percentile"]
-                .apply(
-                    support_level
-                )
-            )
-
-            st.subheader(
-                t("📋 MAP Data Preview")
-            )
-
-            st.dataframe(
-                map_df,
-                use_container_width=True
-            )
-
-            st.markdown("---")
-
-            st.subheader(
-                t("📊 MAP Summary")
-            )
-
-            total_students = len(
-                map_df
-            )
-
-            average_previous = (
-                map_df["Previous RIT"]
-                .mean()
-            )
-
-            average_current = (
-                map_df["Current RIT"]
-                .mean()
-            )
-
-            average_growth = (
-                map_df["RIT Growth"]
-                .mean()
-            )
-
-            average_percentile = (
-                map_df["Percentile"]
-                .mean()
-            )
-
-            c1, c2, c3, c4 = st.columns(4)
-
-            c1.metric(
-                t("👥 Students"),
-                total_students
-            )
-
-            c2.metric(
-                t("📉 Previous Avg RIT"),
-                round(
-                    average_previous,
-                    1
-                )
-            )
-
-            c3.metric(
-                t("📈 Current Avg RIT"),
-                round(
-                    average_current,
-                    1
-                )
-            )
-
-            c4.metric(
-                t("🚀 Average Growth"),
-                round(
-                    average_growth,
-                    1
-                )
-            )
-
-            st.metric(
-                t("🎯 Average Percentile"),
-                round(
-                    average_percentile,
-                    1
-                )
-            )
-
-            st.markdown("---")
-
-            status_count = (
-                map_df["Growth Status"]
-                .value_counts()
-                .reset_index()
-            )
-
-            status_count.columns = [
-                "Status",
-                "Count"
-            ]
-
-            v1, v2 = st.columns(2)
-
-            with v1:
-
-                st.subheader(
-                    t("📈 Student Growth")
-                )
-
-                growth_fig = px.bar(
-                    map_df,
-                    x="Student Name",
-                    y="RIT Growth",
-                    color="Growth Status"
-                )
-
-                st.plotly_chart(
-                    growth_fig,
-                    use_container_width=True
-                )
-
-            with v2:
-
-                st.subheader(
-                    t("📊 Growth Distribution")
-                )
-
-                growth_pie = px.pie(
-                    status_count,
-                    names="Status",
-                    values="Count",
-                    hole=0.3
-                )
-
-                st.plotly_chart(
-                    growth_pie,
-                    use_container_width=True
-                )
-
-            st.markdown("---")
-
-            st.subheader(
-                t("🎯 Student Percentile")
-            )
-
-            percentile_fig = px.bar(
-                map_df,
-                x="Student Name",
-                y="Percentile",
-                color="Support Level",
-                range_y=[0, 100]
-            )
-
-            st.plotly_chart(
-                percentile_fig,
-                use_container_width=True
-            )
-
-            st.subheader(
-                t("👥 Support Groups")
-            )
-
-            support_count = (
-                map_df["Support Level"]
-                .value_counts()
-                .reset_index()
-            )
-
-            support_count.columns = [
-                t("Support Level"),
-                t("Students")
-            ]
-
-            st.dataframe(
-                support_count,
-                use_container_width=True
-            )
-
-            st.subheader(
-                t("📋 Student MAP Analysis")
-            )
-
-            st.dataframe(
-                map_df.style.map(
-                    color_cell,
-                    subset=["Growth Status"]
-                ),
-                use_container_width=True
-            )
-
-            map_buffer = io.BytesIO()
-
-            map_df.to_excel(
-                map_buffer,
-                index=False
-            )
-
-            map_buffer.seek(0)
-
-            st.download_button(
-                t("📥 Download MAP Analysis"),
-                map_buffer.getvalue(),
-                "MAP_Analysis_Report.xlsx",
-                mime=(
-                    "application/vnd.openxmlformats-officedocument."
-                    "spreadsheetml.sheet"
-                )
-            )
-
-        except Exception as error:
+        if map_df is None:
 
             st.error(
                 t("❌ Error reading MAP file: ")
                 +
-                str(error)
+                ", ".join(
+                    map_error
+                )
             )
+
+            st.stop()
+
+        st.subheader(
+            t("📋 MAP Data Preview")
+        )
+
+        st.dataframe(
+            map_df,
+            use_container_width=True
+        )
+
+        st.markdown("---")
+
+        st.subheader(
+            t("📊 MAP Summary")
+        )
+
+        total_students = len(
+            map_df
+        )
+
+        average_previous = (
+            map_df["Previous RIT"]
+            .mean()
+        )
+
+        average_current = (
+            map_df["Current RIT"]
+            .mean()
+        )
+
+        average_growth = (
+            map_df["RIT Growth"]
+            .mean()
+        )
+
+        average_percentile = (
+            map_df["Percentile"]
+            .mean()
+        )
+
+        c1, c2, c3, c4 = st.columns(4)
+
+        c1.metric(
+            t("👥 Students"),
+            total_students
+        )
+
+        c2.metric(
+            t("📉 Previous Avg RIT"),
+            round(
+                average_previous,
+                1
+            )
+        )
+
+        c3.metric(
+            t("📈 Current Avg RIT"),
+            round(
+                average_current,
+                1
+            )
+        )
+
+        c4.metric(
+            t("🚀 Average Growth"),
+            round(
+                average_growth,
+                1
+            )
+        )
+
+        st.metric(
+            t("🎯 Average Percentile"),
+            round(
+                average_percentile,
+                1
+            )
+        )
+
+        st.markdown("---")
+
+        status_count = (
+            map_df["Growth Status"]
+            .value_counts()
+            .reset_index()
+        )
+
+        status_count.columns = [
+            "Status",
+            "Count"
+        ]
+
+        v1, v2 = st.columns(2)
+
+        with v1:
+
+            st.subheader(
+                t("📈 Student Growth")
+            )
+
+            growth_fig = px.bar(
+                map_df,
+                x="Student Name",
+                y="RIT Growth",
+                color="Growth Status"
+            )
+
+            st.plotly_chart(
+                growth_fig,
+                use_container_width=True
+            )
+
+        with v2:
+
+            st.subheader(
+                t("📊 Growth Distribution")
+            )
+
+            growth_pie = px.pie(
+                status_count,
+                names="Status",
+                values="Count",
+                hole=0.3
+            )
+
+            st.plotly_chart(
+                growth_pie,
+                use_container_width=True
+            )
+
+        st.markdown("---")
+
+        st.subheader(
+            t("🎯 Student Percentile")
+        )
+
+        percentile_fig = px.bar(
+            map_df,
+            x="Student Name",
+            y="Percentile",
+            color="Support Level",
+            range_y=[0, 100]
+        )
+
+        st.plotly_chart(
+            percentile_fig,
+            use_container_width=True
+        )
+
+        st.subheader(
+            t("👥 Support Groups")
+        )
+
+        support_count = (
+            map_df["Support Level"]
+            .value_counts()
+            .reset_index()
+        )
+
+        support_count.columns = [
+            t("Support Level"),
+            t("Students")
+        ]
+
+        st.dataframe(
+            support_count,
+            use_container_width=True
+        )
+
+        st.subheader(
+            t("📋 Student MAP Analysis")
+        )
+
+        st.dataframe(
+            map_df.style.map(
+                color_cell,
+                subset=["Growth Status"]
+            ),
+            use_container_width=True
+        )
+
+        map_buffer = io.BytesIO()
+
+        map_df.to_excel(
+            map_buffer,
+            index=False
+        )
+
+        map_buffer.seek(0)
+
+        st.download_button(
+            t("📥 Download MAP Analysis"),
+            map_buffer.getvalue(),
+            "MAP_Analysis_Report.xlsx",
+            mime=(
+                "application/vnd.openxmlformats-officedocument."
+                "spreadsheetml.sheet"
+            )
+        )
 
 
 # =========================================================
@@ -3858,10 +3411,6 @@ elif page == "🎯 Achievement & Gaps":
 
         with v1:
 
-            st.markdown(
-                f"**{t('Bar Chart')}**"
-            )
-
             bar_fig = px.bar(
                 status_df,
                 x="Status",
@@ -3883,10 +3432,6 @@ elif page == "🎯 Achievement & Gaps":
             )
 
         with v2:
-
-            st.markdown(
-                f"**{t('Pie Chart')}**"
-            )
 
             pie_fig = px.pie(
                 status_df,
@@ -4078,78 +3623,13 @@ elif page == "🔍 Comparison Between Sections":
                         f"{t('Class')} {index}"
                     )
 
-                    st.markdown(
-                        f"### 📋 {t('Class')} "
-                        f"{index} {t('Info')}"
-                    )
-
-                    m1, m2, m3, m4 = st.columns(4)
-
-                    m1.markdown(
-                        f"**{t('👩‍🏫 Teacher:')}** "
-                        f"{metadata.get('Teacher Name', 'N/A')}"
-                    )
-
-                    m2.markdown(
-                        f"**{t('🏫 Class:')}** "
-                        f"{class_name}"
-                    )
-
-                    m3.markdown(
-                        f"**{t('📅 Date:')}** "
-                        f"{metadata.get('Date', 'N/A')}"
-                    )
-
-                    m4.markdown(
-                        f"**{t('📝 Assessment:')}** "
-                        f"{metadata.get('Assessment name', 'N/A')}"
-                    )
-
-                    # -------------------------------------------------
-                    # PERFORMANCE BANDS
-                    # -------------------------------------------------
-                    def calculate_band(
-                        percentage
-                    ):
-
-                        if pd.isna(percentage):
-
-                            return t(
-                                "Below 60% (Weak)"
-                            )
-
-                        if percentage < 60:
-
-                            return t(
-                                "Below 60% (Weak)"
-                            )
-
-                        if percentage <= 75:
-
-                            return t(
-                                "60-75% (Acceptable)"
-                            )
-
-                        if percentage <= 85:
-
-                            return t(
-                                "76-85% (Good)"
-                            )
-
-                        return t(
-                            "86-100% (Excellent)"
-                        )
-
                     section_df["Band"] = (
                         section_df["Pct"]
                         .apply(
-                            calculate_band
+                            comparison_band
                         )
                     )
 
-                    # -------------------------------------------------
-                    # OBJECTIVE AVERAGES
-                    # -------------------------------------------------
                     objective_average = {}
 
                     for objective in objective_names:
@@ -4164,7 +3644,9 @@ elif page == "🔍 Comparison Between Sections":
                             objective_average[
                                 objective
                             ] = (
-                                section_df[objective]
+                                section_df[
+                                    objective
+                                ]
                                 /
                                 maximum
                                 * 100
@@ -4195,22 +3677,11 @@ elif page == "🔍 Comparison Between Sections":
                         }
                     )
 
-                # =====================================================
-                # BAND DISTRIBUTION
-                # =====================================================
                 band_order = [
-                    t(
-                        "Below 60% (Weak)"
-                    ),
-                    t(
-                        "60-75% (Acceptable)"
-                    ),
-                    t(
-                        "76-85% (Good)"
-                    ),
-                    t(
-                        "86-100% (Excellent)"
-                    )
+                    t("Below 60% (Weak)"),
+                    t("60-75% (Acceptable)"),
+                    t("76-85% (Good)"),
+                    t("86-100% (Excellent)")
                 ]
 
                 band_rows = []
@@ -4238,9 +3709,7 @@ elif page == "🔍 Comparison Between Sections":
                             0
                         )
 
-                    band_rows.append(
-                        row
-                    )
+                    band_rows.append(row)
 
                 band_df = pd.DataFrame(
                     band_rows
@@ -4274,9 +3743,6 @@ elif page == "🔍 Comparison Between Sections":
                     use_container_width=True
                 )
 
-                # =====================================================
-                # OBJECTIVE COMPARISON
-                # =====================================================
                 st.markdown("---")
 
                 st.subheader(
@@ -4302,7 +3768,7 @@ elif page == "🔍 Comparison Between Sections":
                         if obj in section["obj_names"]
                     ]
 
-                objective_comparison_rows = []
+                objective_rows = []
 
                 for objective in common_objectives:
 
@@ -4328,10 +3794,8 @@ elif page == "🔍 Comparison Between Sections":
 
                     for section in sections_data:
 
-                        percentage = (
-                            section[
-                                "obj_avg"
-                            ].get(
+                        value = (
+                            section["obj_avg"].get(
                                 objective,
                                 float("nan")
                             )
@@ -4343,82 +3807,60 @@ elif page == "🔍 Comparison Between Sections":
 
                         class_percentages[
                             class_name
-                        ] = percentage
+                        ] = value
 
                         row[
                             f"{class_name} %"
                         ] = (
                             round(
-                                percentage,
+                                value,
                                 1
                             )
-                            if not pd.isna(
-                                percentage
-                            )
+                            if not pd.isna(value)
                             else None
                         )
 
                     valid_classes = {
-                        class_name: value
-                        for class_name, value
+                        k: v
+                        for k, v
                         in class_percentages.items()
-                        if not pd.isna(value)
+                        if not pd.isna(v)
                     }
 
-                    if not valid_classes:
+                    if valid_classes:
+
+                        highest = max(
+                            valid_classes.values()
+                        )
+
+                        winners = [
+                            k
+                            for k, v
+                            in valid_classes.items()
+                            if abs(v - highest) < 0.000001
+                        ]
+
+                        if len(winners) > 1:
+
+                            better_class = t("Tie")
+
+                        else:
+
+                            better_class = winners[0]
+
+                        difference = (
+                            highest
+                            -
+                            min(
+                                valid_classes.values()
+                            )
+                        )
+
+                    else:
 
                         better_class = t("N/A")
 
                         difference = None
-
-                    else:
-
-                        max_value = max(
-                            valid_classes.values()
-                        )
-
-                        best_classes = [
-                            class_name
-                            for class_name, value
-                            in valid_classes.items()
-                            if abs(
-                                value
-                                -
-                                max_value
-                            ) < 0.000001
-                        ]
-
-                        if len(
-                            best_classes
-                        ) > 1:
-
-                            better_class = t(
-                                "Tie"
-                            )
-
-                            difference = (
-                                max_value
-                                -
-                                min(
-                                    valid_classes.values()
-                                )
-                            )
-
-                        else:
-
-                            better_class = (
-                                best_classes[0]
-                            )
-
-                            min_value = min(
-                                valid_classes.values()
-                            )
-
-                            difference = (
-                                max_value
-                                -
-                                min_value
-                            )
 
                     row[
                         t("Better Class")
@@ -4435,17 +3877,13 @@ elif page == "🔍 Comparison Between Sections":
                         else None
                     )
 
-                    objective_comparison_rows.append(
-                        row
-                    )
+                    objective_rows.append(row)
 
-                if objective_comparison_rows:
+                objective_comparison_df = pd.DataFrame(
+                    objective_rows
+                )
 
-                    objective_comparison_df = (
-                        pd.DataFrame(
-                            objective_comparison_rows
-                        )
-                    )
+                if not objective_comparison_df.empty:
 
                     st.markdown(
                         f"### 📋 "
@@ -4458,13 +3896,9 @@ elif page == "🔍 Comparison Between Sections":
                         hide_index=True
                     )
 
-                    winner_column = t(
-                        "Better Class"
-                    )
-
                     winner_counts = (
                         objective_comparison_df[
-                            winner_column
+                            t("Better Class")
                         ]
                         .value_counts()
                         .reset_index()
@@ -4492,25 +3926,23 @@ elif page == "🔍 Comparison Between Sections":
 
                         for objective in common_objectives:
 
-                            value = section[
-                                "obj_avg"
-                            ].get(
-                                objective,
-                                float("nan")
+                            value = (
+                                section[
+                                    "obj_avg"
+                                ].get(
+                                    objective,
+                                    float("nan")
+                                )
                             )
 
-                            if not pd.isna(
-                                value
-                            ):
+                            if not pd.isna(value):
 
                                 chart_rows.append(
                                     {
                                         "Objective":
                                             objective,
                                         "Class":
-                                            section[
-                                                "name"
-                                            ],
+                                            section["name"],
                                         "Average %":
                                             round(
                                                 value,
@@ -4521,15 +3953,8 @@ elif page == "🔍 Comparison Between Sections":
 
                     if chart_rows:
 
-                        objective_chart_df = (
-                            pd.DataFrame(
-                                chart_rows
-                            )
-                        )
-
-                        st.markdown(
-                            f"### 📊 "
-                            f"{t('Objective Performance by Class')}"
+                        objective_chart_df = pd.DataFrame(
+                            chart_rows
                         )
 
                         objective_fig = px.bar(
@@ -4551,24 +3976,13 @@ elif page == "🔍 Comparison Between Sections":
                             use_container_width=True
                         )
 
-                else:
-
-                    st.warning(
-                        "No common objectives were found "
-                        "between the uploaded class files."
-                    )
-
-                st.markdown("---")
-
                 st.success(
-                    t(
-                        "✅ Comparison complete."
-                    )
+                    t("✅ Comparison complete.")
                 )
 
 
         # =====================================================
-        # BY ASSESSMENT TOTAL MARK
+        # BY TOTAL MARK
         # =====================================================
         elif comparison_type == t(
             "By Assessment Total Mark"
@@ -4579,11 +3993,9 @@ elif page == "🔍 Comparison Between Sections":
             )
 
             st.info(
-                "Upload Objective Analysis (objectives) OR "
-                "Total Mark sheets per class. "
-                "All will be converted to percentage. "
-                "Bands: Below 60% (Weak), 60-75% (Acceptable), "
-                "76-85% (Good), 86-100% (Excellent)."
+                "Upload Objective Analysis sheets OR Total Mark "
+                "sheets for each class. All results are converted "
+                "to percentage."
             )
 
             n_sec = st.number_input(
@@ -4620,9 +4032,6 @@ elif page == "🔍 Comparison Between Sections":
                     1
                 ):
 
-                    # =================================================
-                    # WORKSHEET SELECTION
-                    # =================================================
                     selected_sheet = get_excel_sheet(
                         file,
                         f"sheet_totalmark_{idx}",
@@ -4634,53 +4043,40 @@ elif page == "🔍 Comparison Between Sections":
 
                         st.stop()
 
-                    # =================================================
-                    # DETECT FILE TYPE
-                    # =================================================
                     file.seek(0)
 
-                    try:
+                    raw_check = pd.read_excel(
+                        file,
+                        sheet_name=selected_sheet,
+                        header=1
+                    )
 
-                        raw_check = pd.read_excel(
-                            file,
-                            sheet_name=selected_sheet,
-                            header=1
-                        )
-
-                        if raw_check.empty:
-
-                            st.error(
-                                f"❌ Class {idx} file is empty."
-                            )
-
-                            st.stop()
-
-                        first_column_values = (
-                            raw_check.iloc[:, 0]
-                            .astype(str)
-                            .str.strip()
-                            .str.lower()
-                        )
-
-                        has_total_row = (
-                            first_column_values
-                            .str.contains(
-                                "points for objectives",
-                                case=False,
-                                na=False
-                            )
-                            .any()
-                        )
-
-                    except Exception:
+                    if raw_check.empty:
 
                         st.error(
-                            f"❌ Class {idx} file could not be read."
+                            f"❌ {t('Class')} {idx} file is empty."
                         )
 
                         st.stop()
 
-                    if has_total_row:
+                    first_column_values = (
+                        raw_check.iloc[:, 0]
+                        .astype(str)
+                        .str.strip()
+                        .str.lower()
+                    )
+
+                    has_objective_row = (
+                        first_column_values
+                        .str.contains(
+                            "points for objectives",
+                            case=False,
+                            na=False
+                        )
+                        .any()
+                    )
+
+                    if has_objective_row:
 
                         meta, df = read_objectives_file(
                             file,
@@ -4697,85 +4093,20 @@ elif page == "🔍 Comparison Between Sections":
                     if meta is None or df is None:
 
                         st.error(
-                            f"❌ Class {idx} file invalid "
-                            "(no valid percentage or total mark data)."
+                            f"❌ {t('Class')} {idx} file invalid."
                         )
 
                         st.stop()
 
                     class_name = meta.get(
                         "Class",
-                        f"Class {idx}"
+                        f"{t('Class')} {idx}"
                     )
-
-                    st.markdown(
-                        f"### 📋 {t('Class')} "
-                        f"{idx} {t('Info')}"
-                    )
-
-                    m1, m2, m3, m4 = st.columns(4)
-
-                    m1.markdown(
-                        f"**{t('👩‍🏫 Teacher:')}** "
-                        f"{meta.get('Teacher Name', 'N/A')}"
-                    )
-
-                    m2.markdown(
-                        f"**{t('🏫 Class:')}** "
-                        f"{class_name}"
-                    )
-
-                    m3.markdown(
-                        f"**{t('📅 Date:')}** "
-                        f"{meta.get('Date', 'N/A')}"
-                    )
-
-                    m4.markdown(
-                        f"**{t('📝 Assessment:')}** "
-                        f"{meta.get('Assessment name', 'N/A')}"
-                    )
-
-                    st.markdown(
-                        f"**{t('📚 Subject:')}** "
-                        f"{meta.get('Subject', 'N/A')}"
-                    )
-
-                    def total_mark_band(p):
-
-                        if pd.isna(p):
-
-                            return t(
-                                "Below 60% (Weak)"
-                            )
-
-                        if p < 60:
-
-                            return t(
-                                "Below 60% (Weak)"
-                            )
-
-                        elif p <= 75:
-
-                            return t(
-                                "60-75% (Acceptable)"
-                            )
-
-                        elif p <= 85:
-
-                            return t(
-                                "76-85% (Good)"
-                            )
-
-                        else:
-
-                            return t(
-                                "86-100% (Excellent)"
-                            )
 
                     df["Band"] = (
                         df["Pct"]
                         .apply(
-                            total_mark_band
+                            comparison_band
                         )
                     )
 
@@ -4786,32 +4117,23 @@ elif page == "🔍 Comparison Between Sections":
                             "df":
                                 df,
                             "bands":
-                                df[
-                                    "Band"
-                                ].value_counts()
+                                df["Band"]
+                                .value_counts()
                         }
                     )
 
                 band_order = [
-                    t(
-                        "Below 60% (Weak)"
-                    ),
-                    t(
-                        "60-75% (Acceptable)"
-                    ),
-                    t(
-                        "76-85% (Good)"
-                    ),
-                    t(
-                        "86-100% (Excellent)"
-                    )
+                    t("Below 60% (Weak)"),
+                    t("60-75% (Acceptable)"),
+                    t("76-85% (Good)"),
+                    t("86-100% (Excellent)")
                 ]
 
-                band_df = pd.DataFrame()
+                band_rows = []
 
                 for section in sections_data:
 
-                    temp = (
+                    counts = (
                         section["bands"]
                         .reindex(
                             band_order
@@ -4820,36 +4142,30 @@ elif page == "🔍 Comparison Between Sections":
                         .astype(int)
                     )
 
-                    temp.name = (
-                        section["name"]
-                    )
+                    row = {
+                        "Class":
+                            section["name"]
+                    }
 
-                    band_df = pd.concat(
-                        [
-                            band_df,
-                            temp.to_frame().T
-                        ],
-                        axis=0
-                    )
+                    for band in band_order:
 
-                band_df = band_df[
-                    band_order
-                ]
+                        row[band] = counts.get(
+                            band,
+                            0
+                        )
 
-                plot_df = (
-                    band_df
-                    .reset_index()
-                    .melt(
-                        id_vars="index",
-                        value_vars=band_order
-                    )
+                    band_rows.append(row)
+
+                band_df = pd.DataFrame(
+                    band_rows
                 )
 
-                plot_df.columns = [
-                    "Class",
-                    "Band",
-                    "Count"
-                ]
+                plot_df = band_df.melt(
+                    id_vars="Class",
+                    value_vars=band_order,
+                    var_name="Band",
+                    value_name="Count"
+                )
 
                 st.subheader(
                     t(
@@ -4899,9 +4215,7 @@ elif page == "🔍 Comparison Between Sections":
                             x=band_df[band].values,
                             y=[
                                 band
-                            ] * len(
-                                band_df
-                            ),
+                            ] * len(band_df),
                             mode="lines",
                             line=dict(
                                 color="lightgray",
@@ -4932,10 +4246,6 @@ elif page == "🔍 Comparison Between Sections":
 
                 for section in sections_data:
 
-                    class_name = section[
-                        "name"
-                    ]
-
                     average_percentage = (
                         section["df"]["Pct"]
                         .dropna()
@@ -4945,7 +4255,7 @@ elif page == "🔍 Comparison Between Sections":
                     class_average_rows.append(
                         {
                             "Class":
-                                class_name,
+                                section["name"],
                             "Class Average %":
                                 round(
                                     average_percentage,
@@ -4978,44 +4288,13 @@ elif page == "🔍 Comparison Between Sections":
                         + 1
                     )
 
-                    def rank_display(
-                        rank
-                    ):
-
-                        if rank == 1:
-
-                            return "🥇 1"
-
-                        elif rank == 2:
-
-                            return "🥈 2"
-
-                        elif rank == 3:
-
-                            return "🥉 3"
-
-                        return str(rank)
-
-                    class_average_df[
-                        "Rank"
-                    ] = (
-                        class_average_df[
-                            "Rank"
-                        ]
-                        .apply(
-                            rank_display
-                        )
-                    )
-
-                    display_columns = [
-                        "Class",
-                        "Class Average %",
-                        "Rank"
-                    ]
-
                     st.dataframe(
                         class_average_df[
-                            display_columns
+                            [
+                                "Class",
+                                "Class Average %",
+                                "Rank"
+                            ]
                         ],
                         use_container_width=True,
                         hide_index=True
@@ -5053,12 +4332,7 @@ elif page == "🔍 Comparison Between Sections":
                     st.info(
                         f"📊 "
                         f"{t('Difference between highest and lowest class average')}: "
-                        f"**{difference:.1f} "
-                        f"percentage points**"
-                    )
-
-                    st.subheader(
-                        "📊 Class Average Comparison"
+                        f"**{difference:.1f} percentage points**"
                     )
 
                     average_chart = px.bar(
@@ -5074,21 +4348,9 @@ elif page == "🔍 Comparison Between Sections":
                         textposition="outside"
                     )
 
-                    average_chart.update_layout(
-                        yaxis_title="Class Average (%)",
-                        xaxis_title="Class"
-                    )
-
                     st.plotly_chart(
                         average_chart,
                         use_container_width=True
-                    )
-
-                else:
-
-                    st.warning(
-                        "No valid class averages "
-                        "could be calculated."
                     )
 
                 st.success(
@@ -5097,7 +4359,7 @@ elif page == "🔍 Comparison Between Sections":
 
 
         # =====================================================
-        # BY EXTERNAL BENCHMARK ASSESSMENT
+        # EXTERNAL BENCHMARK / MAP
         # =====================================================
         elif comparison_type == t(
             "By External Benchmark Assessment"
@@ -5110,22 +4372,41 @@ elif page == "🔍 Comparison Between Sections":
             )
 
             st.info(
-                "Upload one Excel file for each class. "
-                "The workbook may contain more than one "
-                "book/worksheet. Select the book containing "
-                "the benchmark data for each class."
+                "Use the SAME Excel format as the MAP Analysis "
+                "section. Each class uploads its MAP workbook. "
+                "If a workbook has more than one worksheet/book, "
+                "select the worksheet containing that class's "
+                "MAP data."
             )
 
             st.download_button(
                 t(
-                    "📄 Download External Benchmark Excel Template"
+                    "📥 Download External Benchmark Excel Template"
                 ),
-                external_benchmark_template(),
-                "External_Benchmark_Template.xlsx",
+                map_template(),
+                "External_Benchmark_MAP_Template.xlsx",
                 mime=(
                     "application/vnd.openxmlformats-officedocument."
                     "spreadsheetml.sheet"
                 )
+            )
+
+            st.markdown(
+                """
+                **Required Excel columns**
+
+                `Student Name | Grade | Subject | Previous RIT | Current RIT | Percentile`
+
+                **The comparison is based on:**
+
+                **RIT Growth = Current RIT − Previous RIT**
+
+                The class with the highest **Average RIT Growth** is the class
+                that made the most MAP growth.
+
+                The class with the highest **Average Percentile** has the
+                strongest percentile performance.
+                """
             )
 
             st.markdown("---")
@@ -5151,7 +4432,7 @@ elif page == "🔍 Comparison Between Sections":
                         f"{i + 1} "
                         f"{t('file')}",
                         type=["xlsx", "xls"],
-                        key=f"external_file_{i}"
+                        key=f"external_map_file_{i}"
                     )
                 )
 
@@ -5166,8 +4447,8 @@ elif page == "🔍 Comparison Between Sections":
 
                     selected_sheet = get_excel_sheet(
                         file,
-                        f"sheet_external_{index}",
-                        f"{t('Select Book / Worksheet')} - "
+                        f"sheet_external_map_{index}",
+                        f"{t('Select MAP Book / Worksheet')} - "
                         f"{t('Class')} {index}"
                     )
 
@@ -5175,30 +4456,137 @@ elif page == "🔍 Comparison Between Sections":
 
                         st.stop()
 
-                    metadata, benchmark_df = (
-                        read_external_benchmark_file(
+                    benchmark_df, map_error = (
+                        read_map_file(
                             file,
                             sheet_name=selected_sheet
                         )
                     )
 
-                    if (
-                        metadata is None
-                        or benchmark_df is None
-                    ):
+                    if benchmark_df is None:
 
                         st.error(
-                            f"❌ {t('Benchmark file invalid')} "
-                            f"— {t('Class')} {index}"
+                            f"❌ {t('❌ Error reading MAP file: ')}"
+                            + ", ".join(
+                                map_error
+                            )
                         )
 
                         st.stop()
 
-                    class_name = metadata.get(
-                        "Class",
+                    # ---------------------------------------------
+                    # READ CLASS NAME FROM THE WORKBOOK
+                    # ---------------------------------------------
+                    class_name = (
                         f"{t('Class')} {index}"
                     )
 
+                    teacher_name = "N/A"
+
+                    assessment_name = "N/A"
+
+                    date_value = "N/A"
+
+                    subject_value = (
+                        benchmark_df["Subject"]
+                        .dropna()
+                        .iloc[0]
+                        if not benchmark_df[
+                            "Subject"
+                        ].dropna().empty
+                        else "N/A"
+                    )
+
+                    try:
+
+                        file.seek(0)
+
+                        meta_raw = pd.read_excel(
+                            file,
+                            sheet_name=selected_sheet,
+                            nrows=1,
+                            header=None
+                        )
+
+                        for value in meta_raw.iloc[
+                            0
+                        ].tolist():
+
+                            text = str(
+                                value
+                            ).strip()
+
+                            lower_text = (
+                                text.lower()
+                            )
+
+                            if lower_text.startswith(
+                                "class:"
+                            ):
+
+                                class_name = (
+                                    text.split(
+                                        ":",
+                                        1
+                                    )[1]
+                                    .strip()
+                                )
+
+                            elif lower_text.startswith(
+                                "teacher name:"
+                            ):
+
+                                teacher_name = (
+                                    text.split(
+                                        ":",
+                                        1
+                                    )[1]
+                                    .strip()
+                                )
+
+                            elif lower_text.startswith(
+                                "assessment name:"
+                            ):
+
+                                assessment_name = (
+                                    text.split(
+                                        ":",
+                                        1
+                                    )[1]
+                                    .strip()
+                                )
+
+                            elif lower_text.startswith(
+                                "date:"
+                            ):
+
+                                date_value = (
+                                    text.split(
+                                        ":",
+                                        1
+                                    )[1]
+                                    .strip()
+                                )
+
+                            elif lower_text.startswith(
+                                "subject:"
+                            ):
+
+                                subject_value = (
+                                    text.split(
+                                        ":",
+                                        1
+                                    )[1]
+                                    .strip()
+                                )
+
+                    except Exception:
+
+                        pass
+
+                    # ---------------------------------------------
+                    # CLASS INFORMATION
+                    # ---------------------------------------------
                     st.markdown(
                         f"### 📋 {t('Class')} "
                         f"{index} {t('Info')}"
@@ -5208,7 +4596,7 @@ elif page == "🔍 Comparison Between Sections":
 
                     m1.markdown(
                         f"**{t('👩‍🏫 Teacher:')}** "
-                        f"{metadata.get('Teacher Name', 'N/A')}"
+                        f"{teacher_name}"
                     )
 
                     m2.markdown(
@@ -5218,27 +4606,30 @@ elif page == "🔍 Comparison Between Sections":
 
                     m3.markdown(
                         f"**{t('📅 Date:')}** "
-                        f"{metadata.get('Date', 'N/A')}"
+                        f"{date_value}"
                     )
 
                     m4.markdown(
                         f"**{t('📝 Assessment:')}** "
-                        f"{metadata.get('Assessment name', 'N/A')}"
+                        f"{assessment_name}"
                     )
 
                     st.markdown(
                         f"**{t('📚 Subject:')}** "
-                        f"{metadata.get('Subject', 'N/A')}"
+                        f"{subject_value}"
                     )
 
                     st.caption(
-                        f"📘 {t('Book')}: "
+                        f"📘 {t('Select MAP Book / Worksheet')}: "
                         f"**{selected_sheet}**"
                     )
 
+                    # ---------------------------------------------
+                    # DATA PREVIEW
+                    # ---------------------------------------------
                     st.subheader(
                         t(
-                            "External Benchmark Data Preview"
+                            "External Benchmark MAP Data Preview"
                         )
                     )
 
@@ -5248,44 +4639,60 @@ elif page == "🔍 Comparison Between Sections":
                         hide_index=True
                     )
 
-                    valid_scores = (
+                    # ---------------------------------------------
+                    # CLASS CALCULATIONS
+                    # ---------------------------------------------
+                    previous_average = (
                         benchmark_df[
-                            "Score %"
+                            "Previous RIT"
+                        ]
+                        .mean()
+                    )
+
+                    current_average = (
+                        benchmark_df[
+                            "Current RIT"
+                        ]
+                        .mean()
+                    )
+
+                    average_growth = (
+                        benchmark_df[
+                            "RIT Growth"
+                        ]
+                        .mean()
+                    )
+
+                    average_percentile = (
+                        benchmark_df[
+                            "Percentile"
+                        ]
+                        .mean()
+                    )
+
+                    valid_growth = (
+                        benchmark_df[
+                            "RIT Growth"
                         ]
                         .dropna()
                     )
 
-                    average_score = (
-                        valid_scores.mean()
-                        if not valid_scores.empty
-                        else None
+                    students_growth = (
+                        (
+                            valid_growth > 0
+                        ).sum()
                     )
 
-                    median_score = (
-                        valid_scores.median()
-                        if not valid_scores.empty
-                        else None
+                    students_decay = (
+                        (
+                            valid_growth < 0
+                        ).sum()
                     )
 
-                    highest_score = (
-                        valid_scores.max()
-                        if not valid_scores.empty
-                        else None
-                    )
-
-                    lowest_score = (
-                        valid_scores.min()
-                        if not valid_scores.empty
-                        else None
-                    )
-
-                    valid_count = len(
-                        valid_scores
-                    )
-
-                    absent_count = (
-                        benchmark_df["Absent"]
-                        .sum()
+                    students_same = (
+                        (
+                            valid_growth == 0
+                        ).sum()
                     )
 
                     external_sections.append(
@@ -5294,64 +4701,73 @@ elif page == "🔍 Comparison Between Sections":
                                 class_name,
                             "df":
                                 benchmark_df,
-                            "average":
-                                average_score,
-                            "median":
-                                median_score,
-                            "highest":
-                                highest_score,
-                            "lowest":
-                                lowest_score,
-                            "valid_count":
-                                valid_count,
-                            "absent_count":
-                                absent_count
+                            "sheet":
+                                selected_sheet,
+                            "previous":
+                                previous_average,
+                            "current":
+                                current_average,
+                            "growth":
+                                average_growth,
+                            "percentile":
+                                average_percentile,
+                            "growth_count":
+                                students_growth,
+                            "decay_count":
+                                students_decay,
+                            "same_count":
+                                students_same
                         }
                     )
 
-                    c1, c2, c3, c4, c5 = st.columns(5)
+                    # ---------------------------------------------
+                    # INDIVIDUAL CLASS METRICS
+                    # ---------------------------------------------
+                    c1, c2, c3, c4 = st.columns(4)
 
                     c1.metric(
-                        t("👥 Students"),
-                        len(benchmark_df)
+                        t("Previous Average RIT"),
+                        f"{previous_average:.1f}"
+                        if not pd.isna(
+                            previous_average
+                        )
+                        else "N/A"
                     )
 
                     c2.metric(
-                        t("Average Score %"),
-                        f"{average_score:.1f}%"
-                        if average_score is not None
+                        t("Current Average RIT"),
+                        f"{current_average:.1f}"
+                        if not pd.isna(
+                            current_average
+                        )
                         else "N/A"
                     )
 
                     c3.metric(
-                        t("Median Score %"),
-                        f"{median_score:.1f}%"
-                        if median_score is not None
+                        t("Average RIT Growth"),
+                        f"{average_growth:+.1f}"
+                        if not pd.isna(
+                            average_growth
+                        )
                         else "N/A"
                     )
 
                     c4.metric(
-                        t("Highest Score %"),
-                        f"{highest_score:.1f}%"
-                        if highest_score is not None
-                        else "N/A"
-                    )
-
-                    c5.metric(
-                        t("Lowest Score %"),
-                        f"{lowest_score:.1f}%"
-                        if lowest_score is not None
+                        t("Average Percentile"),
+                        f"{average_percentile:.1f}"
+                        if not pd.isna(
+                            average_percentile
+                        )
                         else "N/A"
                     )
 
                     st.markdown("---")
 
                 # =================================================
-                # OVERALL COMPARISON
+                # COMPARISON TABLE
                 # =================================================
                 st.subheader(
-                    f"🏆 "
-                    f"{t('Better Class by External Benchmark')}"
+                    f"📊 {t('MAP Comparison Summary')}"
                 )
 
                 comparison_rows = []
@@ -5362,42 +4778,54 @@ elif page == "🔍 Comparison Between Sections":
                         {
                             "Class":
                                 section["name"],
-                            t("Class Average"):
+                            t("Previous Average RIT"):
                                 round(
-                                    section["average"],
+                                    section["previous"],
                                     1
                                 )
-                                if section["average"]
-                                is not None
+                                if not pd.isna(
+                                    section["previous"]
+                                )
                                 else None,
-                            t("Median Score %"):
+                            t("Current Average RIT"):
                                 round(
-                                    section["median"],
+                                    section["current"],
                                     1
                                 )
-                                if section["median"]
-                                is not None
+                                if not pd.isna(
+                                    section["current"]
+                                )
                                 else None,
-                            t("Highest Score %"):
+                            t("Average RIT Growth"):
                                 round(
-                                    section["highest"],
+                                    section["growth"],
                                     1
                                 )
-                                if section["highest"]
-                                is not None
+                                if not pd.isna(
+                                    section["growth"]
+                                )
                                 else None,
-                            t("Lowest Score %"):
+                            t("Average Percentile"):
                                 round(
-                                    section["lowest"],
+                                    section["percentile"],
                                     1
                                 )
-                                if section["lowest"]
-                                is not None
+                                if not pd.isna(
+                                    section["percentile"]
+                                )
                                 else None,
-                            t("👥 Students"):
-                                section["valid_count"],
-                            t("Absent"):
-                                section["absent_count"]
+                            "Students with Growth":
+                                section[
+                                    "growth_count"
+                                ],
+                            "Students with Decay":
+                                section[
+                                    "decay_count"
+                                ],
+                            "Students Same":
+                                section[
+                                    "same_count"
+                                ]
                         }
                     )
 
@@ -5407,58 +4835,61 @@ elif page == "🔍 Comparison Between Sections":
 
                 if not comparison_df.empty:
 
+                    growth_column = t(
+                        "Average RIT Growth"
+                    )
+
+                    percentile_column = t(
+                        "Average Percentile"
+                    )
+
+                    # ---------------------------------------------
+                    # RANKINGS
+                    # ---------------------------------------------
+                    comparison_df[
+                        t("RIT Growth Rank")
+                    ] = (
+                        comparison_df[
+                            growth_column
+                        ]
+                        .rank(
+                            method="min",
+                            ascending=False
+                        )
+                        .astype("Int64")
+                    )
+
+                    comparison_df[
+                        t("Percentile Rank")
+                    ] = (
+                        comparison_df[
+                            percentile_column
+                        ]
+                        .rank(
+                            method="min",
+                            ascending=False
+                        )
+                        .astype("Int64")
+                    )
+
+                    # ---------------------------------------------
+                    # SORT BY RIT GROWTH FIRST
+                    # ---------------------------------------------
                     comparison_df = (
                         comparison_df
                         .sort_values(
-                            t("Class Average"),
-                            ascending=False
+                            [
+                                growth_column,
+                                percentile_column
+                            ],
+                            ascending=[
+                                False,
+                                False
+                            ]
                         )
                         .reset_index(
                             drop=True
                         )
-                    )
-
-                    comparison_df["Rank"] = (
-                        comparison_df.index + 1
-                    )
-
-                    def display_rank(
-                        rank
-                    ):
-
-                        if rank == 1:
-
-                            return "🥇 1"
-
-                        if rank == 2:
-
-                            return "🥈 2"
-
-                        if rank == 3:
-
-                            return "🥉 3"
-
-                        return str(rank)
-
-                    comparison_df["Rank"] = (
-                        comparison_df["Rank"]
-                        .apply(
-                            display_rank
-                        )
-                    )
-
-                    ordered_columns = [
-                        "Rank"
-                    ] + [
-                        c
-                        for c in comparison_df.columns
-                        if c != "Rank"
-                    ]
-
-                    comparison_df = (
-                        comparison_df[
-                            ordered_columns
-                        ]
                     )
 
                     st.dataframe(
@@ -5467,167 +4898,197 @@ elif page == "🔍 Comparison Between Sections":
                         hide_index=True
                     )
 
-                    best_row = (
-                        comparison_df.iloc[0]
-                    )
-
-                    best_class = best_row[
-                        "Class"
+                    # =================================================
+                    # BEST CLASS BY RIT GROWTH
+                    # =================================================
+                    valid_growth_sections = [
+                        section
+                        for section in external_sections
+                        if not pd.isna(
+                            section["growth"]
+                        )
                     ]
 
-                    highest_average = float(
-                        best_row[
-                            t("Class Average")
-                        ]
-                    )
+                    if valid_growth_sections:
 
-                    lowest_average = float(
-                        comparison_df[
-                            t("Class Average")
-                        ]
-                        .dropna()
-                        .min()
-                    )
+                        best_growth_section = max(
+                            valid_growth_sections,
+                            key=lambda section:
+                                section["growth"]
+                        )
 
-                    average_difference = round(
-                        highest_average
-                        -
-                        lowest_average,
-                        1
-                    )
+                        st.success(
+                            f"🚀 **{t('Best Class by RIT Growth')}: "
+                            f"{best_growth_section['name']} — "
+                            f"{best_growth_section['growth']:+.1f} "
+                            f"RIT points**"
+                        )
 
-                    st.success(
-                        f"🏆 **{t('Best Class')}: "
-                        f"{best_class} — "
-                        f"{highest_average:.1f}%**"
-                    )
+                    # =================================================
+                    # BEST CLASS BY PERCENTILE
+                    # =================================================
+                    valid_percentile_sections = [
+                        section
+                        for section in external_sections
+                        if not pd.isna(
+                            section["percentile"]
+                        )
+                    ]
 
-                    st.info(
-                        f"📊 "
-                        f"{t('Difference between highest and lowest class average')}: "
-                        f"**{average_difference:.1f} "
-                        f"percentage points**"
-                    )
+                    if valid_percentile_sections:
 
+                        best_percentile_section = max(
+                            valid_percentile_sections,
+                            key=lambda section:
+                                section["percentile"]
+                        )
+
+                        st.info(
+                            f"🎯 **{t('Best Class by Percentile')}: "
+                            f"{best_percentile_section['name']} — "
+                            f"{best_percentile_section['percentile']:.1f}th "
+                            f"percentile**"
+                        )
+
+                    # =================================================
+                    # RIT GROWTH CHART
+                    # =================================================
                     st.subheader(
                         t(
-                            "External Benchmark Performance by Class"
+                            "RIT Growth Comparison by Class"
                         )
                     )
 
-                    average_chart = px.bar(
-                        comparison_df,
+                    growth_chart_df = comparison_df[
+                        [
+                            "Class",
+                            growth_column
+                        ]
+                    ].copy()
+
+                    growth_chart = px.bar(
+                        growth_chart_df,
                         x="Class",
-                        y=t("Class Average"),
-                        text=t("Class Average"),
-                        range_y=[0, 100]
+                        y=growth_column,
+                        text=growth_column
                     )
 
-                    average_chart.update_traces(
-                        texttemplate="%{text:.1f}%",
+                    growth_chart.update_traces(
+                        texttemplate="%{text:+.1f}",
                         textposition="outside"
                     )
 
-                    average_chart.update_layout(
-                        yaxis_title="Average (%)",
+                    growth_chart.update_layout(
+                        yaxis_title="Average RIT Growth",
                         xaxis_title="Class"
                     )
 
                     st.plotly_chart(
-                        average_chart,
+                        growth_chart,
                         use_container_width=True
                     )
 
-                # =================================================
-                # PERFORMANCE BANDS
-                # =================================================
-                st.markdown("---")
-
-                st.subheader(
-                    t(
-                        "📊 Band Distribution per Class"
-                    )
-                )
-
-                band_order = [
-                    t(
-                        "Below 60% (Weak)"
-                    ),
-                    t(
-                        "60-75% (Acceptable)"
-                    ),
-                    t(
-                        "76-85% (Good)"
-                    ),
-                    t(
-                        "86-100% (Excellent)"
-                    )
-                ]
-
-                band_rows = []
-
-                for section in external_sections:
-
-                    class_name = section[
-                        "name"
-                    ]
-
-                    counts = (
-                        section["df"]["Band"]
-                        .value_counts()
-                        .reindex(
-                            band_order
+                    # =================================================
+                    # PERCENTILE CHART
+                    # =================================================
+                    st.subheader(
+                        t(
+                            "Percentile Comparison by Class"
                         )
-                        .fillna(0)
-                        .astype(int)
                     )
 
-                    row = {
-                        "Class":
-                            class_name
-                    }
+                    percentile_chart_df = comparison_df[
+                        [
+                            "Class",
+                            percentile_column
+                        ]
+                    ].copy()
 
-                    for band in band_order:
+                    percentile_chart = px.bar(
+                        percentile_chart_df,
+                        x="Class",
+                        y=percentile_column,
+                        text=percentile_column,
+                        range_y=[0, 100]
+                    )
 
-                        row[band] = counts.get(
-                            band,
-                            0
+                    percentile_chart.update_traces(
+                        texttemplate="%{text:.1f}",
+                        textposition="outside"
+                    )
+
+                    percentile_chart.update_layout(
+                        yaxis_title="Average Percentile",
+                        xaxis_title="Class"
+                    )
+
+                    st.plotly_chart(
+                        percentile_chart,
+                        use_container_width=True
+                    )
+
+                    # =================================================
+                    # PREVIOUS VS CURRENT RIT
+                    # =================================================
+                    st.subheader(
+                        "📈 Previous RIT vs Current RIT by Class"
+                    )
+
+                    trajectory_rows = []
+
+                    for section in external_sections:
+
+                        trajectory_rows.append(
+                            {
+                                "Class":
+                                    section["name"],
+                                "Assessment":
+                                    "Previous RIT",
+                                "RIT":
+                                    section["previous"]
+                            }
                         )
 
-                    band_rows.append(
-                        row
+                        trajectory_rows.append(
+                            {
+                                "Class":
+                                    section["name"],
+                                "Assessment":
+                                    "Current RIT",
+                                "RIT":
+                                    section["current"]
+                            }
+                        )
+
+                    trajectory_df = pd.DataFrame(
+                        trajectory_rows
                     )
 
-                benchmark_band_df = pd.DataFrame(
-                    band_rows
-                )
-
-                benchmark_plot_df = (
-                    benchmark_band_df
-                    .melt(
-                        id_vars="Class",
-                        value_vars=band_order,
-                        var_name="Band",
-                        value_name="Count"
+                    trajectory_fig = px.line(
+                        trajectory_df,
+                        x="Assessment",
+                        y="RIT",
+                        color="Class",
+                        markers=True,
+                        text="RIT"
                     )
-                )
 
-                benchmark_band_fig = px.bar(
-                    benchmark_plot_df,
-                    x="Band",
-                    y="Count",
-                    color="Class",
-                    barmode="group",
-                    text="Count"
-                )
+                    trajectory_fig.update_traces(
+                        textposition="top center"
+                    )
 
-                st.plotly_chart(
-                    benchmark_band_fig,
-                    use_container_width=True
-                )
+                    st.plotly_chart(
+                        trajectory_fig,
+                        use_container_width=True
+                    )
 
                 st.success(
                     t(
-                        "Benchmark comparison complete."
+                        "MAP comparison complete."
                     )
                 )
+
+
+# =========================================================
+# END
+# =========================================================
